@@ -11,7 +11,14 @@ class UserController extends Controller
     //
     public function index(){
         // 
-        // return view('index');
+        return view('admin.users.index', [
+            'users' => User::all()
+        ]);
+    }
+
+    public function show(User $user){
+        //
+        return view('admin.users.show', ['user' => User::findOrFail($user->id)]);
     }
 
     //
@@ -43,6 +50,21 @@ class UserController extends Controller
         auth()->login($user);
 
         return redirect()->route('listing.index')->with("success", "User created successfully.");
+    }
+
+    public function update(Request $request, User $user){
+        //
+        $formData = $request->validate([
+            'name' => 'required|min:5',
+            "email" => ['required', 'email', Rule::unique('users')],
+        ]);
+
+        $user->name = $formData['name'];
+        $user->email = $formData['email'];
+
+        $user->save();
+
+        return redirect()->route('profile')->with("success", "User updated successfully.");
     }
 
     //

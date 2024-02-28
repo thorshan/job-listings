@@ -54,24 +54,6 @@
             <p class="text-danger mt-3">{{ $message }}</p>
             @enderror
         </div>
-        <div class="form-group mb-3">
-            <label for="category">Job Category</label>
-            <select id="category" class="custom-select form-control mt-2" name="category_id">
-                <option>-- select -- </option>
-                @foreach($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="form-group mb-3">
-            <label for="user">Company</label>
-            <select id="user" class="custom-select form-control mt-2" name="user_id">
-                <option>-- select -- </option>
-                @foreach($companies as $company)
-                <option value="{{ $company->id }}">{{ $company->name }}</option>
-                @endforeach
-            </select>
-        </div>
-        <button type="submit" class="btn btn-sm btn-primary mb-3">Add Company</button>
+        <button type="submit" class="btn btn-sm btn-primary mb-3">Add new Job</button>
     </form>
 </x-layout>

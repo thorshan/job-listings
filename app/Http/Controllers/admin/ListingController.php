@@ -4,7 +4,6 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use App\Models\Company;
 use App\Models\Listing;
 
@@ -25,9 +24,7 @@ class ListingController extends Controller
     public function create()
     {
         //
-        return view("listings.create",
-        ['categories' => Category::all(), 'companies' => Company::all()]
-    );
+        return view("listings.create");
     }
 
     /**
@@ -36,7 +33,36 @@ class ListingController extends Controller
     public function store(Request $request, Listing $listing)
     {
         //
-        // $formData = validator($request->all());
+        $formData = $request->validate([
+            'title' => 'required',
+            'salary' => 'required',
+            'exp' => 'required',
+            'tag' => 'required',
+            'location' => 'required',
+            'description' => 'required',
+            'requirements' => 'required',
+        ]);
+
+        $listing = new Listing();
+
+        $listing->title = $formData['title'];
+        $listing->salary = $formData['salary'];
+        $listing->exp = $formData['exp'];
+        $listing->tag = $formData['tag'];
+        $listing->description = $formData['description'];
+        $listing->location = $formData['location'];
+        $listing->requirements = $formData['requirements'];
+
+        $user = auth()->user();
+        $listing->user_id = $user->id;
+
+        // dd($user->id);
+        $company = Company::find($user->id);
+        $listing->company_id = $company->id;
+
+        $listing->save();
+
+        return redirect()->route('listing.index')->with('success', 'Listing created successfully!');
     }
 
     /**
@@ -45,6 +71,9 @@ class ListingController extends Controller
     public function show(Listing $listing)
     {
         //
+        return view('listings.edit', [
+            'listing' => Listing::find($listing->id)
+        ]);
     }
 
     /**
@@ -53,6 +82,9 @@ class ListingController extends Controller
     public function edit(Listing $listing)
     {
         //
+        return view('listings.edit', [
+            'listing' => Listing::find($listing->id)
+        ]);
     }
 
     /**
@@ -61,6 +93,29 @@ class ListingController extends Controller
     public function update(Request $request, Listing $listing)
     {
         //
+        $formData = $request->validate([
+            'title' => 'required',
+            'salary' => 'required',
+            'exp' => 'required',
+            'tag' => 'required',
+            'location' => 'required',
+            'description' => 'required',
+            'requirements' => 'required',
+        ]);
+
+        $listing->title = $formData['title'];
+        $listing->salary = $formData['salary'];
+        $listing->exp = $formData['exp'];
+        $listing->tag = $formData['tag'];
+        $listing->description = $formData['description'];
+        $listing->location = $formData['location'];
+        $listing->requirements = $formData['requirements'];
+
+        $listing->user_id = auth()->user()->id;
+
+        $listing->save();
+
+        return redirect()->route('listing.index')->with('success', 'Listing updated successfully!');
     }
 
     /**
@@ -69,5 +124,9 @@ class ListingController extends Controller
     public function destroy(Listing $listing)
     {
         //
+        $listing = Listing::findOrFail($listing->id);
+        $listing->delete();
+
+        return redirect()->route('listing.index')->with('success', 'Listing deleted successfully!');
     }
 }

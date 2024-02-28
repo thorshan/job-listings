@@ -11,8 +11,8 @@ class Listing extends Model
 
     protected $fillable = [
         "title",
-        "category_id", 
-        "company_id", 
+        "user_id", 
+        "company_id",
         "salary", 
         "exp", 
         "location", 
@@ -21,13 +21,13 @@ class Listing extends Model
         "requirements"
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function company()
     {
         return $this->belongsTo(Company::class);
-    }
-
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
     }
 }
