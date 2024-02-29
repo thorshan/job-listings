@@ -5,7 +5,7 @@
 @section('content')
 <div class="container">
     <div class="d-flex flex-column justify-content-center align-items-center">
-        <img src="{{asset('logo/logo.png')}}" width="200" alt="" class="my-5">
+        <img src="{{asset('logo/hola-high-resolution-logo-transparent.png')}}" width="200" alt="" class="my-5">
         <h2 class="mb-3">Login</h2>
         <form action="{{ route('authenticate')}}" method="POST" class="w-50">
             @csrf

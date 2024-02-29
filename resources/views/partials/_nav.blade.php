@@ -1,7 +1,7 @@
 <nav class="navbar bg-body-tertiary">
     <div class="container-fluid px-5">
         <a class="navbar-brand" href="{{url()->current()}}">
-            <img src="{{asset('logo/logo.png')}}" width="120">
+            <img src="{{asset('logo/hola-high-resolution-logo-transparent.png')}}" width="120">
         </a>
         @if(auth()->check())
         <div class="btn-group">

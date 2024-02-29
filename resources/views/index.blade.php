@@ -9,16 +9,12 @@
     <div class="container-fluid px-5">
         {{-- Search form --}}
         <div class="my-5">
-            <form action="" method="get">
+            <form action="{{ route('search') }}" method="get">
                 <input class="form-control" type="search" name="search" id="search"
                     placeholder="Industry, Job title, Job type ...">
             </form>
         </div>
         {{--  --}}
-
-        <div class="d-flex aligin-items-center justify-content-center my-3 mb-5">
-            <img src="{{ asset('hero.jpeg') }}" class="img-fluid" alt="...">
-        </div>
 
         {{-- Job Listings --}}
         @foreach ($listings as $listing)
@@ -26,10 +22,7 @@
                 <h4>{{ $listing->title }}</h4>
                 <p><i class="fa-solid fa-wallet text-primary"></i> ${{ $listing->salary }}</p>
                 <div class="d-flex">
-                    <p class="me-2 bg-primary p-1 text-white rounded">Tag</p>
-                    <p class="me-2 bg-primary p-1 text-white rounded">Tag</p>
-                    <p class="me-2 bg-primary p-1 text-white rounded">Tag</p>
-                    <p class="me-2 bg-primary p-1 text-white rounded">Tag</p>
+                    <p class="me-2 bg-primary py-1 px-2 text-white rounded">{{ $listing->tag }}</p>
                 </div>
                 <div class="d-flex align-items-center">
                     <img src="{{ asset($listing->company->image) }}" width="50" alt="">
@@ -46,12 +39,13 @@
             position: relative;
             overflow: hidden;
         }
+
         .card-image {
             position: absolute;
             width: 300px;
             transform: rotate(-25deg);
             top: -10;
-            right:0;
+            right: 0;
             opacity: .3;
         }
     </style>

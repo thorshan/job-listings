@@ -49,7 +49,7 @@ class UserController extends Controller
         $user->save();
         auth()->login($user);
 
-        return redirect()->route('listing.index')->with("success", "User created successfully.");
+        return redirect()->route('dashboard')->with("success", "User created successfully.");
     }
 
     public function update(Request $request, User $user){
@@ -83,7 +83,7 @@ class UserController extends Controller
 
         if (auth()->attempt($formData)) {
             $request->session()->regenerate();
-            return redirect()->route('listing.index')->with("success", "User logged in successfully.");
+            return redirect()->route('dashboard')->with("success", "User logged in successfully.");
         }
 
         return back()->withErrors(["email" => "invalid creadentials"])->onlyInput('email');

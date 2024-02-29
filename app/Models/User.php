@@ -33,6 +33,14 @@ class User extends Authenticatable
         return $this->hasMany(Listing::class);
     }
 
+    public function user_role(){
+        return $this->hasMany(UserRole::class);
+    }
+
+    public function role(){
+        return $this->hasMany(Role::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

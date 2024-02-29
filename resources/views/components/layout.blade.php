@@ -9,12 +9,12 @@
                 @include('partials._sidenav')
             </div>
             <div class="g-0 px-5 py-3" style="width:80%">
-                <div class="px-2" style="background: #eee">
-                    <p class="lh-lg">Bradcrumbs</p>
+                <div class="">
+                    <p class="text-primary">Bradcrumbs</p>
                 </div>
                 {{ $slot }}
-                <div class="px-2 mt-5" style="background: #eee">
-                    <p class="lh-lg">&copy; 2024, All Rights Reserved.</p>
+                <div class="mt-5">
+                    <p class="text-secondary"><span class="text-primary">&copy; 2024</span> Hola. All Rights Reserved.</p>
                 </div>
             </div>
         </div>

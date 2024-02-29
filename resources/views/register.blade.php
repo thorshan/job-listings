@@ -6,7 +6,7 @@
 
     <div class="container">
         <div class="d-flex flex-column justify-content-center align-items-center">
-            <img src="{{asset('logo/logo.png')}}" width="200" alt="" class="my-5">
+            <img src="{{asset('logo/hola-high-resolution-logo-transparent.png')}}" width="200" alt="" class="my-5">
             <h1 class="mb-3">Register</h1>
             <form action="{{ route('create.user') }}" method="POST" class="w-50">
                 @csrf
