@@ -38,6 +38,15 @@
             </div>
         </div>
         @if($userRole->id == 1)
+        <button class="btn btn-light shadow-sm rounded-0 mb-1 d-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapse22" aria-expanded="false" aria-controls="collapse22"><i class="fa-solid fa-user mx-4 me-3 text-primary"></i>User
+        </button>
+        <div class="collapse" id="collapse22">
+            <div class="d-flex flex-column mx-5 my-2">
+                <a href="{{ route('users') }}" class="text-decoration-none text-secondary">All Users</a>
+            </div>
+        </div>
+        @endif
+        @if($userRole->id == 1)
         <button class="btn btn-light shadow-sm rounded-0 mb-1 d-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour"><i class="fa-solid fa-user-group mx-4 me-3 text-primary"></i>Roles
         </button>
         <div class="collapse" id="collapsefour">

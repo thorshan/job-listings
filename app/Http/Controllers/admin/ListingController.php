@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Company;
 use App\Models\Listing;
+use App\Models\UserRole;
 
 class ListingController extends Controller
 {
@@ -15,6 +16,13 @@ class ListingController extends Controller
     public function index()
     {
         //
+        $user = auth()->user()->id;
+        $userRole = UserRole::find($user);
+        // dd($user, $userRole, $userRole->role->id);
+        if ($userRole->role->id !== 1) {
+            $data = Listing::where('user_id', '=', $user)->get();
+            return view("listings.index", ["listings" => $data]);
+        }
         return view("listings.index", ["listings" => Listing::all()]);
     }
 
@@ -71,7 +79,7 @@ class ListingController extends Controller
     public function show(Listing $listing)
     {
         //
-        return view('listings.edit', [
+        return view('listings.show', [
             'listing' => Listing::find($listing->id)
         ]);
     }
